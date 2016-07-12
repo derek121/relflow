@@ -16,11 +16,15 @@ set_appfile_version(Filepath, NewVsn) when is_list(Filepath) ->
 
 set_rebar_relx_version(Filepath, NewVsn) ->
     {ok, Bin} = file:read_file(Filepath),
+    rebar_api:info("Bin: ~p", [Bin]),
     Lines = lists:map(fun binary_to_list/1, binary:split(Bin, <<"\n">>, [global])),
+    rebar_api:info("Lines: ~p", [Lines]),
     case set_rebar_relx_version_1(NewVsn, Lines, false, []) of
         {error, _} = E ->
+            rebar_api:info("E: ~p", [E]),
             E;
         Contents ->
+            rebar_api:info("Ok: ~p", [Contents]),
             ok = file:write_file(Filepath, [strip(Contents), <<"\n">>])
     end.
 
