@@ -107,6 +107,7 @@ do_init_versions(State0) ->
             ok = relflow_rewriter:set_appfile_version(AppFile, NextAppVer)
         end, Apps),
         rebar_api:error("Setting release vsn in rebar.config to ~s", [NewRelVsn]),
+      io:format("Setting release vsn in rebar.config to ~s~n", [NewRelVsn]),
         case relflow_rewriter:set_rebar_relx_version("rebar.config", NewRelVsn) of
             {error, ErrReason} ->
                 ?PRV_ERROR(ErrReason);
