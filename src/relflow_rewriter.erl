@@ -37,7 +37,7 @@ set_rebar_relx_version_1(NewVsn, [Line | Lines], Found, Acc) ->
             set_rebar_relx_version_1(NewVsn, Lines, Found, [Line|Acc])
     end;
 set_rebar_relx_version_1(_, [], false, _Acc) ->
-    %rebar_api:error("You must have a '%% relflow-release-version-marker' line in rebar.config",[]),
+    rebar_api:error("You must have a '%% relflow-release-version-marker' line in rebar.config",[]),
     {error, relflow_marker_missing};
 set_rebar_relx_version_1(_, [], true, Acc) ->
     [ [Line, <<"\n">>] || Line <- lists:reverse(Acc) ].
