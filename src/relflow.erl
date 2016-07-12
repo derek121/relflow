@@ -169,7 +169,7 @@ exec_2(Map, State, NewRelVsn) ->
         %rebar_api:info("Bumping version in ~s", [AppSrc]),
         ok = relflow_rewriter:set_appfile_version(AppSrc, NextVsn)
     end, maps:to_list(Map)),
-    rebar_api:info("Rewriting release vsn in rebar.config: ~s", [NewRelVsn]),
+    rebar_api:info("xxx Rewriting release vsn in rebar.config: ~s", [NewRelVsn]),
     relflow_rewriter:set_rebar_relx_version("rebar.config", NewRelVsn),
     %% print summary
     FilesTouched = lists:foldl(
